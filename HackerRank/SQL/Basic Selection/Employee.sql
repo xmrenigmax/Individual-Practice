@@ -1,0 +1,45 @@
+/*
+* File: Employee.sql
+* Challenge: Basic Selection
+* Author: Riley Jordan
+* Date: February 11, 2025
+* Database: Oracle
+*/
+
+-- Table Definition
+CREATE TABLE EMPLOYEE (
+    EMPLOYEE_ID NUMBER CONSTRAINT employee_pk PRIMARY KEY,
+    NAME VARCHAR2(21) NOT NULL,
+    MONTHS NUMBER NOT NULL,
+    SALARY VARCHAR2(21) NOT NULL
+);
+
+-- Data Insertion
+INSERT ALL
+    INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (12228, 'Rose', 15, '1968.00')
+    INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (33645, 'Angela', 1, '3443.00')
+    INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (45692, 'Frank', 17, '1608.00')
+    INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (56118, 'Patrick', 7, '1345.00')
+    INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (59725, 'Lisa', 11, '2330.00')
+    INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (74197, 'Kimberly', 16, '4372.00')
+    INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (78454, 'Bonnie', 8, '1771.00')
+    INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (83557, 'Michael', 6, '2017.00')
+    INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (96196, 'Todd', 5, '3396.00')
+    INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (98846, 'Joe', 2, '3573.00')
+SELECT * FROM dual; -- dual is exection trigger
+
+
+-- Query Section 1: List Properties in Ascending Order
+/* Query 1: List Employee ID and Name ASC */
+SELECT NAME FROM EMPLOYEE 
+ORDER BY NAME ASC;
+
+-- Query Section 2: Employees with high salary and less than 10 months
+/* Query 2: List Employee Name with Salary > 2000 and Months < 10 Sort by id asc*/
+SELECT NAME FROM EMPLOYEE
+WHERE SALARY > 2000 AND MONTHS <10
+ORDER BY EMPLOYEE_ID ASC;
+
+-- Cleanup Section
+COMMIT;
+DROP TABLE EMPLOYEE PURGE;
