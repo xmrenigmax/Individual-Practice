@@ -16,6 +16,10 @@ CREATE TABLE EMPLOYEE (
 
 -- Data Insertion
 INSERT ALL
+    INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (1, 'Kristen',5,1420.00)
+    INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (2, 'Ashley', 6, 2006.00)
+    INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (3, 'Julia', 7, 2210.00)
+    INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (4, 'Maria', 8, 3000.00)
     INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (12228, 'Rose', 15, 1968.00)
     INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (33645, 'Angela', 1, 3443.00)
     INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (45692, 'Frank', 17, 1608.00)
@@ -28,9 +32,18 @@ INSERT ALL
     INTO EMPLOYEE (EMPLOYEE_ID, NAME, MONTHS, SALARY) VALUES (98846, 'Joe', 2, 3573.00)
 SELECT * FROM dual;
 
--- Query Section
-/* Calculate maximum total earnings (salary * months) */
-SELECT MAX(SALARY * MONTHS) AS EARNINGS, COUNT(EARNINGS) AS COUNT FROM EMPLOYEE;
+-- Query Section 1: Top Earners
+/* Calculate maximum total earnings (salary * months) and total number of employees who have max total earnings */
+SELECT earnings, count(*) FROM (
+    SELECT SALARY * MONTHS as earnings
+    FROM EMPLOYEE) 
+    WHERE earnings = (SELECT MAX(SALARY*MONTHS)FROM EMPLOYEE)
+GROUP BY earnings;
+
+-- Query Section 2: Average Salary
+/* Calculate average salary of all employees, fixing samanthas blunder   */
+-- Samantha removes all 0 from table. actual - blunder = difference
+SELECT CEIL(AVG(Salary)-AVG(REPLACE(Salary,'0',''))) FROM EMPLOYEES;
 
 
 -- Cleanup Section
