@@ -49,3 +49,5 @@ SELECT CEIL(AVG(Salary)-AVG(REPLACE(Salary,'0',''))) FROM EMPLOYEES;
 -- Cleanup Section
 COMMIT;
 DROP TABLE EMPLOYEE PURGE;
+
+-- Query Section 3: Employee IDs greater than 10000
